@@ -25,7 +25,7 @@ let userSchema = mongoose.Schema({
         required: true,
         lowercase: true,
         trim: true,
-        unique:true,
+        unique: true,
         validate(value) {
             if (!validator.isEmail(value)) {
                 throw new Error("Invalid email")
@@ -62,7 +62,7 @@ userSchema.methods.generateAuthToken = async function() {
     let user = this
     let token = jwt.sign({_id: user.id.toString()}, process.env.JWT_SECRET || "superduper")
 
-    user.tokens = user.tokens.concat({token:token})
+    user.tokens = user.tokens.concat({token: token})
     await user.save()
 
     return token

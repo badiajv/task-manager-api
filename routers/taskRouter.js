@@ -9,7 +9,7 @@ router.post("/tasks", async (req, res) => {
     try {
         await task.save()
         res.status(201).send(task)
-    } catch (error) {
+    } catch(error) {
         res.status(400).send(error.message)
     }
 })
@@ -18,7 +18,7 @@ router.get("/tasks", async (req, res) => {
     try {
         const tasks = await Task.find({})
         res.send(tasks)
-    } catch (error) {
+    } catch(error) {
         res.status(500).send(error.message)
     }
 })
@@ -32,7 +32,7 @@ router.get("/tasks/:id", async (req, res) => {
             return res.status(404).send("Task not found")
         }
         res.send(task)
-    } catch (error) {
+    } catch(error) {
         res.status(400).send(error.message)
     }
 })
@@ -67,7 +67,7 @@ router.patch("/tasks/:id", async (req, res) => {
 router.delete("/tasks/:id", async (req, res) => {
     try {
         const task = await Task.findByIdAndDelete(req.params.id)
-        if(!Task){
+        if (!Task) {
             return res.status(404).send("Task not found")
         }
         res.send(task)
